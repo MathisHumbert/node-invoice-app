@@ -3,6 +3,7 @@ require('express-async-errors');
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const connectDB = require('./db/connect');
 
@@ -13,7 +14,9 @@ const invoicesRouter = require('./routes/invoices');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // routes
 app.use('/api/v1/invoices', invoicesRouter);
