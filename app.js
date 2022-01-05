@@ -9,17 +9,18 @@ const connectDB = require('./db/connect');
 
 // routers
 const invoicesRouter = require('./routes/invoices');
+const authRouter = require('./routes/auth');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
-// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
 // routes
 app.use('/api/v1/invoices', invoicesRouter);
+app.use('/api/v1/auth', authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

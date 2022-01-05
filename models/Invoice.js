@@ -7,7 +7,7 @@ const InvoiceSchema = new mongoose.Schema({
   paymentDue: {
     type: String,
   },
-  descritpion: {
+  description: {
     type: String,
   },
   paymentTerms: {
