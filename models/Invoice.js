@@ -34,6 +34,11 @@ const InvoiceSchema = new mongoose.Schema({
   total: {
     type: Number,
   },
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'please provide user'],
+  },
 });
 
 module.exports = mongoose.model('Invoice', InvoiceSchema);

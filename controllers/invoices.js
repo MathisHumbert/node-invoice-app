@@ -13,6 +13,8 @@ const getInvoice = async (req, res) => {
 
   // createdBy
   const invoice = await Invoice.findOne({ _id: invoiceID });
+  invoice.__v = undefined;
+
   if (!invoice) {
     throw new NotFoundError(`No invoice with the id ${invoiceID}`);
   }

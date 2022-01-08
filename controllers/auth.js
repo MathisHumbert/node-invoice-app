@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
-const { BadRequestError, UnauthenticatedError } = require('../errors');
-const jwt = require('jsonwebtoken');
+const { UnauthenticatedError } = require('../errors');
 
 const register = async (req, res) => {
   const user = await User.create({ ...req.body });
@@ -27,14 +26,7 @@ const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: user.name, token });
 };
 
-const logout = async (req, res) => {
-  const token = jwt.sign({}, ' ', { expiresIn: 1 });
-
-  res.json({ msg: 'You have Logged Out' });
-};
-
 module.exports = {
   register,
   login,
-  logout,
 };
