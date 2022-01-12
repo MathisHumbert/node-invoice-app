@@ -4,6 +4,10 @@ require('express-async-errors');
 const express = require('express');
 const app = express();
 
+const helmet = require('helmet');
+const xss = required('xss-clean');
+const mongoSanitize = required('express-mongo-sanitize');
+
 const connectDB = require('./db/connect');
 
 // routers
@@ -16,6 +20,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const authenticateUser = require('./middleware/authentication');
 
 app.use(express.json());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
 
 // routes
 app.use('/api/v1/invoices', authenticateUser, invoicesRouter);
